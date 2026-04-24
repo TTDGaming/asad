@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Asad" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+  <link rel="icon" href="/icons/icon-192.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <title>Asad · Quản lý dịch phim & tải video</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <h1>Asad</h1>
+      <span class="subtitle">Quản lý dịch phim &amp; tải video</span>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="projects" role="tab">Dự án</button>
+      <button class="tab" data-tab="downloads" role="tab">Tải xuống</button>
+      <button class="tab" data-tab="translate" role="tab">Dịch</button>
+      <button class="tab" data-tab="providers" role="tab">Nguồn</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Projects tab -->
+    <section class="view" id="view-projects" data-view="projects">
+      <div class="toolbar">
+        <h2>Danh sách dự án</h2>
+        <button class="btn primary" id="btn-new-project">+ Dự án mới</button>
+      </div>
+      <div id="project-list" class="card-grid"></div>
+    </section>
+
+    <!-- Downloads tab -->
+    <section class="view hidden" id="view-downloads" data-view="downloads">
+      <div class="toolbar">
+        <h2>Hàng chờ tải</h2>
+        <button class="btn primary" id="btn-new-download">+ Thêm tải</button>
+      </div>
+      <div id="download-list" class="download-list"></div>
+    </section>
+
+    <!-- Translate tab -->
+    <section class="view hidden" id="view-translate" data-view="translate">
+      <div class="toolbar">
+        <div class="project-picker">
+          <label>Dự án:</label>
+          <select id="translate-project"></select>
+        </div>
+        <div class="actions">
+          <button class="btn" id="btn-add-line">+ Dòng dịch</button>
+          <button class="btn" id="btn-export-srt">Xuất SRT</button>
+        </div>
+      </div>
+      <div id="translation-list" class="translation-list"></div>
+    </section>
+
+    <!-- Providers tab -->
+    <section class="view hidden" id="view-providers" data-view="providers">
+      <div class="toolbar">
+        <h2>Nguồn tải (Providers)</h2>
+      </div>
+      <div id="provider-list" class="provider-list"></div>
+      <p class="hint">
+        Các provider Douyin, Hongguo đã có chỗ chờ. Khi bạn thêm API thực, chỉ
+        cần bổ sung logic trong <code>backend/downloaders/</code> rồi
+        <code>enabled = True</code>.
+      </p>
+    </section>
+  </main>
+
+  <!-- Modal: Project -->
+  <dialog id="dialog-project">
+    <form method="dialog" id="form-project">
+      <h3 id="project-dialog-title">Dự án mới</h3>
+      <label>Tiêu đề<input name="title" required placeholder="Tên phim / tập" /></label>
+      <label>Mô tả<textarea name="description" rows="2"></textarea></label>
+      <label>URL nguồn<input name="source_url" placeholder="https://..." /></label>
+      <div class="row">
+        <label>Ngôn ngữ gốc<input name="source_language" placeholder="zh" /></label>
+        <label>Dịch sang<input name="target_language" placeholder="vi" /></label>
+      </div>
+      <label>Provider
+        <select name="provider">
+          <option value="">-- auto --</option>
+        </select>
+      </label>
+      <menu>
+        <button value="cancel">Hủy</button>
+        <button value="ok" class="primary" id="project-submit">Lưu</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Modal: Download -->
+  <dialog id="dialog-download">
+    <form method="dialog" id="form-download">
+      <h3>Thêm tải xuống</h3>
+      <label>Dự án
+        <select name="project_id" required></select>
+      </label>
+      <label>URL<input name="url" required placeholder="https://..." /></label>
+      <label>Provider
+        <select name="provider">
+          <option value="">-- auto --</option>
+        </select>
+      </label>
+      <menu>
+        <button value="cancel">Hủy</button>
+        <button value="ok" class="primary">Tải</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

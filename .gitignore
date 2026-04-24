@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+.env
+.DS_Store
+storage/app.db
+storage/videos/*
+storage/subtitles/*
+!storage/videos/.gitkeep
+!storage/subtitles/.gitkeep
+.idea/
+.vscode/
