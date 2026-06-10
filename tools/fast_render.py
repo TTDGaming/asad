@@ -361,4 +361,10 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BrokenPipeError:
+        # Output bị pipe sang lệnh khác (vd. | head) và bị đóng sớm — bỏ qua.
+        sys.exit(0)
+    except KeyboardInterrupt:
+        sys.exit(130)
