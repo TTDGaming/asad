@@ -64,6 +64,10 @@ frontend/                   # vanilla PWA (no build step, no framework)
 storage/                    # runtime data (gitignored except .gitkeep)
   app.db                    # SQLite DB (created at startup)
   videos/, subtitles/       # downloaded files
+tools/
+  fast_render.py            # standalone CLI: region blur + burn SRT subs via
+                            # ffmpeg (NVDEC/NVENC w/ CPU fallback); stdlib only
+  README.md                 # usage & performance notes (Vietnamese)
 ```
 
 ### Data model (`backend/models.py`)
