@@ -1,12 +1,12 @@
 {
-  "name": "Asad - Quản lý dịch phim",
-  "short_name": "Asad",
-  "description": "Quản lý dịch phim, tải và lưu video trực tiếp. Hoạt động trên Windows và iPhone.",
+  "name": "Asad Store - Cửa hàng số tự động",
+  "short_name": "Asad Store",
+  "description": "Cửa hàng số bán hàng tự động: tài khoản, key bản quyền, giao hàng tức thì 24/7.",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "theme_color": "#6d28d9",
   "icons": [
     { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }

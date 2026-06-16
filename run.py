@@ -1,6 +1,6 @@
-"""Khởi động Asad ở local.
+"""Khởi động Asad Store ở local.
 
-Windows:   python run.py
+Windows:   python run.py  →  http://localhost:8000  (admin / admin123)
 iPhone:    mở Safari tới http://<IP-máy-Windows>:8000 rồi "Add to Home Screen"
 """
 

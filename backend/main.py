@@ -6,21 +6,18 @@ from fastapi.staticfiles import StaticFiles
 
 from .config import FRONTEND_DIR
 from .database import init_db
-from .download_manager import manager
-from .routers import downloads, projects, translations
+from .routers import admin, affiliate, auth, cart, catalog, orders, wallet
+from .seed import seed
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     init_db()
-    manager.start()
-    try:
-        yield
-    finally:
-        await manager.stop()
+    seed()
+    yield
 
 
-app = FastAPI(title="Asad - Video Translation & Download Manager", lifespan=lifespan)
+app = FastAPI(title="Asad Store - Cửa hàng số tự động", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -30,9 +27,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(projects.router)
-app.include_router(translations.router)
-app.include_router(downloads.router)
+app.include_router(auth.router)
+app.include_router(catalog.router)
+app.include_router(cart.router)
+app.include_router(orders.router)
+app.include_router(wallet.router)
+app.include_router(affiliate.router)
+app.include_router(admin.router)
 
 
 @app.get("/api/health")

@@ -1,4 +1,4 @@
-const CACHE = "asad-shell-v1";
+const CACHE = "asad-store-v1";
 const ASSETS = ["/", "/index.html", "/style.css", "/app.js", "/manifest.json"];
 
 self.addEventListener("install", (event) => {
